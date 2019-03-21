@@ -1,0 +1,11 @@
+logger:
+  name: Exmaple Logger Name
+  level: debug
+argparse:
+  description: argparse example config
+  arguments:
+    example:
+      help: just example argument
+      type: str
+      required: no
+example: example config param from config file
