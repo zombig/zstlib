@@ -1,0 +1,10 @@
+logger:
+  name: Default App Logger
+  level: info
+argparse:
+  description: Default Argparser Config
+  arguments:
+    config:
+      help: path to application config file
+      type: str
+      required: yes
