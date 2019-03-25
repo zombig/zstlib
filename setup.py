@@ -18,7 +18,7 @@ else:
 
 setuptools.setup(
     name='zstlib',
-    version='0.0.1.0',
+    version='0.1.0',
     author='zombig',
     author_email='zstlib@zombig.name',
     description='Small useful python tool set',
