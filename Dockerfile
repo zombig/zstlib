@@ -1,7 +1,7 @@
 FROM centos:7
 
 LABEL name="zstlib" \
-  version="0.0.1.0"
+  version="0.1.0"
 
 ENV PYTHON_VERSION="3.7.1"
 ENV LD_LIBRARY_PATH="/usr/lib:/usr/lib64"
