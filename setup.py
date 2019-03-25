@@ -26,6 +26,9 @@ setuptools.setup(
     long_description_content_type='text/markdown',
     url='https://github.com/zombig/zstlib',
     packages=setuptools.find_packages(),
+    package_data={
+        'base_config': ['config.yaml'],
+    },
     classifiers=[
         'Programming Language :: Python :: {}'.format(programming_language),
         'License :: OSI Approved :: MIT License',
