@@ -4,18 +4,21 @@ import socket
 import time
 
 
-class SensuClient:
+class SensuClient(object):
 
     OK = 0
     WARNING = 1
     ERROR = 2
     UNKNOWN = 3
 
-    def __init__(self, name, address='localhost', port=3030, command='unknown', handlers=['default'], **kwargs):
+    def __init__(
+        self, name, address='localhost', port=3030, command='unknown',
+        handlers=None,
+    ):
         self.name = name
         self.address = address
         self.port = port
-        self.handlers = handlers
+        self.handlers = handlers if handlers else ['default']
         self.command = command
 
     def __send(self, message):
