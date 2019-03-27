@@ -21,7 +21,7 @@ RUN true \
 
 # Install python and dependencies
 COPY build/python-build.sh /python-build.sh
-RUN chmod +x /python-build.sh; /python-build.sh; \
+RUN chmod +x /python-build.sh; /python-build.sh && \
     /bin/python -m pip install wheel; \
     /bin/python3 -m pip install wheel
 
