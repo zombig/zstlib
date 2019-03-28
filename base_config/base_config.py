@@ -33,6 +33,7 @@ class Config(object):
     def __init__(self, path=None):
 
         # Pre-defined class vars
+        self.config = None
         self.sensu = {}
         self.logger = {'name': 'Config Initialization'}
         self.argparse = {
@@ -48,9 +49,16 @@ class Config(object):
 
         if not path:
             self.__args_parser()
-            path = self.config
+        elif not isinstance(path, str):
+            raise TypeError(
+                '{}: config path could be a string but not {}'.format(
+                    self.__class__.__name__, type(path),
+                ),
+            )
+        else:
+            self.config = path
 
-        self.__config_parser(path)
+        self.__config_parser()
         self.__args_parser()
         self.__set_logger()
         self.__set_sensu()
@@ -66,17 +74,17 @@ class Config(object):
         else:
             delattr(self, 'sensu')
 
-    def __config_parser(self, path):
-        with open(path) as config_file:
+    def __config_parser(self):
+        with open(self.config) as config_file:
             cfg = yaml.safe_load(config_file)
-            assert cfg, 'CONFIG: config file {} is empty!'.format(path)
+            assert cfg, 'CONFIG: config file {} is empty!'.format(self.config)
         for key in cfg.keys():
             setattr(self, key, cfg[key])
 
     def __args_parser(self):
         args = getattr(self, 'argparse', {})
         if args:
-            parser = argparse.ArgumentParser(description=args['description'])
+            parser = argparse.ArgumentParser(args['description'])
             for arg in args['arguments']:
                 arg_prams = args['arguments'][arg].copy()
                 arg_prams['type'] = locate(arg_prams['type'])
@@ -85,7 +93,7 @@ class Config(object):
                 ) if 'default' not in arg_prams else arg_prams['default']
                 parser.add_argument('--{}'.format(arg), **arg_prams)
             delattr(self, 'argparse')
-            args = vars(parser.parse_args())
+            args = vars(parser.parse_known_args()[0])
             for arg in args:
                 setattr(self, arg, args[arg])
 
