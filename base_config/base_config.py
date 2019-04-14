@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 """Base Config Module
 
-Handle application configs, loggers and sensu alerts
-via yaml configs.
+Manage an application configs via an yaml file.
+The module sent a configs variables, logger,
+argparse and the Sensu Client (optional).
+
+TODO: implement statsd/telegraf client for send application metrics.
 
 """
 import argparse
@@ -15,8 +18,8 @@ import yaml
 class Config(object):
     """Config
 
-    Create application config, set logger and sensu client via provided
-    configuration yaml file.
+    Create an application config. Sets logger
+    and Sensu Client (optional)
 
     Example:
         Read config, create logger and send alert
@@ -62,7 +65,7 @@ class Config(object):
         self.__args_parser()
         self.__set_logger()
         self.__set_sensu()
-        self.logger.info('Config file loaded from: %s', path)
+        self.logger.info('Config file loaded from: %s', self.config)
         self.logger.debug('Current running config: %s', self.__dict__)
 
     def __set_sensu(self):
