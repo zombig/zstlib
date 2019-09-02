@@ -8,6 +8,7 @@ argparse and the Sensu Client (optional).
 TODO: implement statsd/telegraf client for send application metrics.
 
 """
+import sys
 import argparse
 import logging
 from pydoc import locate
@@ -68,6 +69,8 @@ class Config(object):
         self.logger.info('Config file loaded from: %s', self.config)
         self.logger.debug('Current running config: %s', self.__dict__)
 
+        sys.excepthook = self.__excepthook
+
     def __set_sensu(self):
         sensu = getattr(self, 'sensu', {})
         if sensu:
@@ -107,3 +110,6 @@ class Config(object):
         logger_cfg['level'] = logger_cfg.pop('level', 'INFO').upper()
         logger_cfg['format'] = '[%(asctime)s] %(name)s[%(process)d][%(levelname)s]: %(message)s'
         logging.basicConfig(**logger_cfg)
+
+    def __excepthook(self, *args):
+        self.logger.fatal('uncouth exception: %s:', args[1], exc_info=args)
