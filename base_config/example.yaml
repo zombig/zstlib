@@ -1,0 +1,21 @@
+# Just an example config file that show you how you can
+# sets logger, sensu and argparse params.
+
+# Set an application logger
+logger:
+  name: Example Config Logger
+  level: debug
+
+# Initiate the Sensu client
+sensu:
+  name: example_app
+
+# Add some arguments
+argparse:
+  description: Example application
+  arguments:
+    exmaple:
+      type: str
+
+# set application vars
+my_var: my application test var
