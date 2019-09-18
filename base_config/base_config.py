@@ -8,9 +8,9 @@ argparse and the Sensu Client (optional).
 TODO: implement statsd/telegraf client for send application metrics.
 
 """
-import sys
 import argparse
 import logging
+import sys
 from pydoc import locate
 
 import yaml
@@ -75,7 +75,7 @@ class Config(object):
         sensu = getattr(self, 'sensu', {})
         if sensu:
             from sensu_client import SensuClient
-            sensu.update(sensu.pop('name', self.__class__.__name__))
+            sensu.update({'name': sensu.pop('name', self.__class__.__name__)})
             self.sensu = SensuClient(**sensu)
         else:
             delattr(self, 'sensu')
