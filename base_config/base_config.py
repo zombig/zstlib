@@ -34,7 +34,7 @@ class Config(object):
 
     """
 
-    def __init__(self, path=None):
+    def __init__(self, path=None, cli_config=False):
 
         # Pre-defined class vars
         self.config = None
@@ -60,7 +60,8 @@ class Config(object):
                 ),
             )
         else:
-            self.argparse = {}
+            if not cli_config:
+                self.argparse = {}
             self.config = path
 
         self.__config_parser()
