@@ -60,6 +60,7 @@ class Config(object):
                 ),
             )
         else:
+            self.argparse = {}
             self.config = path
 
         self.__config_parser()
