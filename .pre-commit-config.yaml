@@ -1,6 +1,6 @@
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v2.1.0
+    rev: v2.4.0
     hooks:
       - id: check-added-large-files
       - id: check-ast
@@ -27,7 +27,7 @@ repos:
       - id: sort-simple-yaml
       - id: trailing-whitespace
   - repo: https://github.com/pre-commit/mirrors-autopep8
-    rev: v1.4.3
+    rev: v1.4.4
     hooks:
       - id: autopep8
 #  - repo: https://github.com/pre-commit/mirrors-isort
@@ -35,11 +35,11 @@ repos:
 #    hooks:
 #      - id: isort
   - repo: https://github.com/pre-commit/mirrors-puppet-lint
-    rev: v2.3.6
+    rev: v2.4.2
     hooks:
       - id: puppet-lint
   - repo: https://github.com/Lucas-C/pre-commit-hooks
-    rev: v1.1.6
+    rev: v1.1.7
     hooks:
       - id: forbid-crlf
       - id: remove-crlf
@@ -54,32 +54,36 @@ repos:
       - id: dockerfile_lint
       - id: markdown-toc
   - repo: https://gitlab.com/pycqa/flake8
-    rev: 3.7.7
+    rev: 3.7.9
     hooks:
       - id: flake8
   - repo: https://github.com/pre-commit/pre-commit
-    rev: v1.14.4
+    rev: v1.20.0
     hooks:
       - id: validate_manifest
   - repo: https://github.com/asottile/pyupgrade
-    rev: v1.12.0
+    rev: v1.25.2
     hooks:
       - id: pyupgrade
   - repo: https://github.com/asottile/reorder_python_imports
-    rev: v1.4.0
+    rev: v1.8.0
     hooks:
       - id: reorder-python-imports
         language_version: python3
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.20.0
+    hooks:
+      - id: markdownlint
   - repo: https://github.com/asottile/add-trailing-comma
-    rev: v0.8.0
+    rev: v1.5.0
     hooks:
       - id: add-trailing-comma
   - repo: https://github.com/pre-commit/mirrors-pylint
-    rev: v1.9.1
+    rev: v2.4.4
     hooks:
       - id: pylint
   - repo: https://github.com/jumanjihouse/pre-commit-hooks
-    rev: 1.11.0
+    rev: 1.11.2
     hooks:
       - id: bundler-audit
       - id: check-mailmap
@@ -88,7 +92,6 @@ repos:
       #  id: forbid-space-in-indent
       - id: git-check  # Configure in .gitattributes
       #  id: git-dirty  # Configure in .gitignore
-      - id: markdownlint # Configure in .mdlrc
       - id: reek
       #  id: require-ascii
       - id: rubocop
@@ -108,7 +111,7 @@ repos:
       - id: dockerfilelint
         stages: [commit]
   - repo: https://github.com/alessandrojcm/commitlint-pre-commit-hook
-    rev: v1.0.0
+    rev: v2.1.0
     hooks:
       - id: commitlint
         stages: [commit-msg]
