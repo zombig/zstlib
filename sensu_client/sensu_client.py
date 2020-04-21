@@ -4,7 +4,7 @@ import socket
 import time
 
 
-class SensuClient(object):
+class SensuClient:
 
     OK = 0
     WARNING = 1
@@ -24,7 +24,7 @@ class SensuClient(object):
     def __send(self, message):
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.connect((self.address, self.port))
-        s.send(message)
+        s.send(message.encode())
 
     def __compose(self, output, status):
         message = {
