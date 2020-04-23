@@ -1,8 +1,14 @@
-# Change Log
+# Changelog
 
-All notable changes to this project will be documented in this file.
-See [standard-version](https://github.com/conventional-changelog/standard-version)
-for commit guidelines.
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+### [0.1.2](https://github.com/zombig/zstlib/compare/v0.1.1...v0.1.2) (2020-04-23)
+
+
+### Bug Fixes
+
+* **sensu_client:** fix typeerror ([3e1c410](https://github.com/zombig/zstlib/commit/3e1c410df92edd1a0bc343b9a8f94f6d7896ddf1))
+* **setup.py:** fix version control ([5d35291](https://github.com/zombig/zstlib/commit/5d35291c6c8311ed7d04c6ab617c47145c5e0fa2)), closes [#3](https://github.com/zombig/zstlib/issues/3)
 
 ## [0.1.1](https://github.com/zombig/zstlib/compare/v0.1.0...v0.1.1) (2019-12-19)
 
