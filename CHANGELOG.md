@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.0](https://github.com/zombig/zstlib/compare/v0.1.2...v0.2.0) (2020-06-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* **tinyapp:** The base_config module is no logner exist.
+		 Please use TinyApp module instead.
+	         Please note that TinyApp has uncompatible interface with
+	         base_config (view docs).
+
+### Features
+
+* **tinyapp:** implement tinyapp ([9b71daf](https://github.com/zombig/zstlib/commit/9b71daf353d2fc6683dc0572660271446e80ef73))
+
 ### [0.1.2](https://github.com/zombig/zstlib/compare/v0.1.1...v0.1.2) (2020-04-23)
 
 
