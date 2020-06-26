@@ -19,7 +19,12 @@ Example:
     - merge first config with last
     >>> c3.from_config(c1)
     >>> print(c3) #  {'timeout': 10, 'name': '3rd config'}
+
+TODO: configs validation on load
+
 """
+from weakref import WeakKeyDictionary
+
 import yaml
 
 
@@ -47,6 +52,38 @@ class ConfigImmutable(ConfigException):
     """
 
 
+class ConfigHandler:
+    """
+    A default Config class descriptor for create some data handlers (hooks).
+
+    Example:
+        Create some child class for store your handler.
+
+        >>> class Example(ConfigHandler): \\
+                def __set__(self, instance, value): \\
+                    if not isinctance(value, self.default): \\
+                        raise RuntimeError('value shall be string') \\
+                    super()__set__(instance, value)
+        Then apply this handler to some class param:
+        >>> Config.example = Example(str)
+
+        With this example Handler will run every time when something try to
+        set Config.example value, and check if this value is str or not.
+
+    """
+
+    def __init__(self, default):
+        self.default = default
+        self.data = WeakKeyDictionary()
+        Config.hooks.append(self.__class__.__name__)
+
+    def __get__(self, instance, owner):
+        return self.data.get(instance, self.default)
+
+    def __set__(self, instance, value):
+        self.data[instance] = value
+
+
 class Config:
     """
     An application's config storage class.
@@ -57,6 +94,7 @@ class Config:
                                 Config.register_config(name) function.
         :param registry: registry for known loaded configuration options (for current
                          instance.
+        :param hooks: storage for keep information about registered hooks.
 
     Pre-defined options:
         :parameter logger: logger configuration.
@@ -65,9 +103,12 @@ class Config:
 
     configs_storage = {}
 
+    hooks = []
+
     __build_in_attrs = [
         'configs_storage',
         'registry',
+        'hooks',
     ]
 
     def __init__(self, allow_overrides=True):
@@ -79,11 +120,6 @@ class Config:
         """
         self.registry = set()
         self.allow_overrides = allow_overrides
-
-        self.logger = {
-            'level': 'INFO',
-            'format': '[%(asctime)s] %(name)s[%(process)d][%(levelname)s]: %(message)s',
-        }
 
         self.sensu = {}
 
