@@ -37,8 +37,8 @@ class SensuClient:
         }
         return json.dumps(message)
 
-    def ok(self):
-        self.__send(self.__compose('OK', self.OK))
+    def ok(self, message=OK):
+        self.__send(self.__compose(message, self.OK))
 
     def warning(self, message):
         self.__send(self.__compose(message, self.WARNING))
@@ -48,7 +48,3 @@ class SensuClient:
 
     def unknown(self, message):
         self.__send(self.__compose(message, self.UNKNOWN))
-
-
-if __name__ == '__main__':
-    assert False, 'ERROR: Direct access to this file is not allowed!'

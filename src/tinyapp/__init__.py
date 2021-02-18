@@ -25,7 +25,7 @@ from .cli import cli_config_file
 from .cli import parse_args
 from .config import Config
 from .config import ConfigHandler
-from .sensu_client import SensuClient
+from .sensu import SensuClient
 
 __all__ = [
     'TinyApp',
